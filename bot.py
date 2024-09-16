@@ -5,7 +5,7 @@ import shutil
 import subprocess
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-
+from WinRAR import *
 # إعدادات البوت
 api_id = 27963121  # ضع api_id الخاص بك
 api_hash = "aff4a583ee5107e6c0fb7e1f02b45652"  # ضع api_hash الخاص بك
