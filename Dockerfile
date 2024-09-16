@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     unzip \
     p7zip-full \
-    unrar \
+    unrar-free \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements.txt and install Python dependencies
