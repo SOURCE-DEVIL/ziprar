@@ -1,13 +1,16 @@
 {
-  "name": "ZipBot",
-  "description": "A Telegram bot for compressing and extracting files with password protection.",
+  "name": "ZipRarBot",
+  "description": "A Telegram bot to compress and decompress files",
+  "repository": "https://github.com/SOURCE-DEVIL/ziprar",
+  "logo": "https://path.to.logo/logo.png",
+  "keywords": ["bot", "telegram", "compress", "decompress"],
   "env": {
     "API_ID": {
       "description": "Your Telegram API ID",
       "required": true
     },
     "API_HASH": {
-      "description": "Your Telegram API Hash",
+      "description": "Your Telegram API HASH",
       "required": true
     },
     "BOT_TOKEN": {
@@ -15,40 +18,15 @@
       "required": true
     }
   },
-  "addons": [
-    {
-      "plan": "heroku-postgresql"
-    }
-  ],
   "buildpacks": [
     {
       "url": "heroku/python"
     },
     {
-      "url": "https://github.com/heroku/heroku-buildpack-apt"
+      "url": "https://github.com/ramsey/heroku-buildpack-rar.git"
     }
   ],
   "scripts": {
-    "postdeploy": "python3 bot.py"
-  },
-  "formation": {
-    "web": {
-      "quantity": 1,
-      "size": "free"
-    }
-  },
-  "stack": "heroku-20",
-  "environments": {
-    "test": {
-      "scripts": {
-        "test": "pytest"
-      }
-    }
-  },
-  "apt": {
-    "packages": [
-      "unrar",
-      "rar"
-    ]
+    "postdeploy": "python main.py"
   }
 }
