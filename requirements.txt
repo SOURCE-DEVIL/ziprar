@@ -1,4 +1,5 @@
-pyzipper
-rarfile
-pyrogram 
-
+pyrogram==2.0.30
+pyzipper==0.3.5
+rarfile==4.0
+unrar==0.4
+shutil
