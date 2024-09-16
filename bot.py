@@ -34,7 +34,7 @@ def compress_files_with_password(file_paths, custom_name=None, password=None, fo
                     zipf.write(file_path, os.path.basename(file_path))
     elif format == "rar":
 
-        rar_path = "WinRAR\\rar"
+        rar_path = "WinRAR\\Rar.exe"
         if password:
             subprocess.run([rar_path, 'a', '-p' + password, compressed_path] + file_paths)
         else:
