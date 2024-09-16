@@ -27,6 +27,6 @@
     }
   ],
   "scripts": {
-    "postdeploy": "python main.py"
+    "postdeploy": "python bot.py"
   }
 }
