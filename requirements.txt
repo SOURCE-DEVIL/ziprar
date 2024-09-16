@@ -1,5 +1,4 @@
 pyzipper
 rarfile
 pyrogram 
-shutil
 subprocess
