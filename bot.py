@@ -33,14 +33,16 @@ def compress_files_with_password(file_paths, custom_name=None, password=None, fo
                 for file_path in file_paths:
                     zipf.write(file_path, os.path.basename(file_path))
     elif format == "rar":
-
-        rar_path = "WinRAR\\Rar.exe"
+        rar_path = shutil.which("rar")  # استخدام المسار التلقائي لبرنامج rar
+        if rar_path is None:
+            raise FileNotFoundError("لم يتم العثور على برنامج rar. تأكد من أنه مثبت على النظام.")
         if password:
             subprocess.run([rar_path, 'a', '-p' + password, compressed_path] + file_paths)
         else:
             subprocess.run([rar_path, 'a', compressed_path] + file_paths)
 
     return compressed_path
+
 
 
 def extract_file(file_path, password=None):
@@ -54,12 +56,16 @@ def extract_file(file_path, password=None):
             zip_ref.extractall(extracted_folder)
     elif file_path.endswith('.rar'):
         with rarfile.RarFile(file_path, 'r') as rar_ref:
-            if password:
-                rar_ref.extractall(extracted_folder, pwd=password)
-            else:
-                rar_ref.extractall(extracted_folder)
+            try:
+                if password:
+                    rar_ref.extractall(extracted_folder, pwd=password)
+                else:
+                    rar_ref.extractall(extracted_folder)
+            except rarfile.RarWrongPassword:
+                raise RuntimeError("كلمة المرور غير صحيحة أو الملف تالف.")
 
     return extracted_folder
+
 
 
 pending_compression = {}
