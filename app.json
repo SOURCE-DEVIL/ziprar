@@ -1,32 +1,45 @@
 {
-  "name": "ZipRarBot",
-  "description": "A Telegram bot to compress and decompress files",
-  "repository": "https://github.com/SOURCE-DEVIL/ziprar",
-  "logo": "https://path.to.logo/logo.png",
-  "keywords": ["bot", "telegram", "compress", "decompress"],
-  "env": {
-    "API_ID": {
-      "description": "Your Telegram API ID",
-      "required": true
+    "name": "ZipRarBot",
+    "description": "A Telegram bot to compress and decompress ZIP and RAR files",
+    "keywords": [
+        "pyrogram",
+        "telegram-bot",
+        "compression",
+        "zip",
+        "rar"
+    ],
+    "repository": "https://github.com/SOURCE-DEVIL/ziprar",
+    "env": {
+        "API_ID": {
+            "description": "Your Telegram API ID",
+            "required": true
+        },
+        "API_HASH": {
+            "description": "Your Telegram API HASH",
+            "required": true
+        },
+        "BOT_TOKEN": {
+            "description": "Your Telegram Bot Token",
+            "required": true
+        }
     },
-    "API_HASH": {
-      "description": "Your Telegram API HASH",
-      "required": true
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/ramsey/heroku-buildpack-rar.git"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "eco"
+        }
     },
-    "BOT_TOKEN": {
-      "description": "Your Telegram Bot Token",
-      "required": true
-    }
-  },
-  "buildpacks": [
-    {
-      "url": "heroku/python"
-    },
-    {
-      "url": "https://github.com/ramsey/heroku-buildpack-rar.git"
-    }
-  ],
-  "scripts": {
-    "postdeploy": "python bot.py"
-  }
+    "addons": [],
+    "stack": "container"
 }
